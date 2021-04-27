@@ -5,7 +5,6 @@ import 'component/selection_card.dart';
 
 class Payments {
   List pay = ['Dinheiro', 'Débito', 'Crédito'];
-  
 }
 
 void main() {
@@ -33,8 +32,6 @@ class _HomePageState extends State<HomePage> {
       1, (index) => {'id': index, 'name': 'Item $index', 'isSelected': false});
 
   final payment = Payments();
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -66,15 +63,18 @@ class _HomePageState extends State<HomePage> {
                     crossAxisCount: 1,
                     mainAxisSpacing: 8,
                     childAspectRatio: 0.5),
-                children: payment.pay.map(
-                  (p){
-                    return GestureDetector(onTap: (){
+                children: payment.pay.map((p) {
+                  return GestureDetector(
+                    onTap: () {
                       setState(() {
                         pay = p;
                       });
-                    },)
-                  }
-                ),
+                    },
+                    child: Container(
+                      child: p,
+                    ),
+                  );
+                }),
               ),
             ],
           ),
