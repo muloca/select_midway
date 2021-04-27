@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:selection/component/select_radio.dart';
 import 'package:selection/component/selection_componet.dart';
-
 import 'component/selection_card.dart';
+
+class Payments {
+  List pay = ['Dinheiro', 'Débito', 'Crédito'];
+  
+}
 
 void main() {
   runApp(MyApp());
@@ -28,6 +32,10 @@ class _HomePageState extends State<HomePage> {
   final List<Map> data = List.generate(
       1, (index) => {'id': index, 'name': 'Item $index', 'isSelected': false});
 
+  final payment = Payments();
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +58,24 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: RadioSelect(),
-              )
+              ),
+              GridView(
+                padding: EdgeInsets.symmetric(vertical: 4),
+                scrollDirection: Axis.horizontal,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 8,
+                    childAspectRatio: 0.5),
+                children: payment.pay.map(
+                  (p){
+                    return GestureDetector(onTap: (){
+                      setState(() {
+                        pay = p;
+                      });
+                    },)
+                  }
+                ),
+              ),
             ],
           ),
         ));

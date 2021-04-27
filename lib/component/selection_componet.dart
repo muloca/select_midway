@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:selection/component/selection_card.dart';
 
-enum SingingCharacter { dinheiro, cartao }
-
 class SelectionComponent extends StatefulWidget {
   @override
   _SelectionComponentState createState() => _SelectionComponentState();
@@ -10,8 +8,6 @@ class SelectionComponent extends StatefulWidget {
 
 class _SelectionComponentState extends State<SelectionComponent> {
   List<bool> _selections = List.generate(3, (index) => false);
-
-  SingingCharacter _character = SingingCharacter.dinheiro;
 
   @override
   Widget build(BuildContext context) {
