@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 
-enum SingingCharacter { lafayette, jefferson }
-
 class SelectCard extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<SelectCard> {
-  // Generating a long list to fill the ListView
   final List<Map> data = List.generate(
       1, (index) => {'id': index, 'name': 'Item $index', 'isSelected': false});
-
-  SingingCharacter _character = SingingCharacter.lafayette;
 
   @override
   Widget build(BuildContext context) {

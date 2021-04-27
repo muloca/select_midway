@@ -25,7 +25,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // Generating a long list to fill the ListView
   final List<Map> data = List.generate(
       1, (index) => {'id': index, 'name': 'Item $index', 'isSelected': false});
 

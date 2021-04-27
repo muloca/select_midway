@@ -20,7 +20,7 @@ class _MyStatefulWidgetState extends State<RadioSelect> {
       children: <Widget>[
         ListTile(
           title: const Text('Lafayette'),
-          trailing: Radio<SingingCharacter>(
+          leading: Radio<SingingCharacter>(
             value: SingingCharacter.lafayette,
             groupValue: _character,
             onChanged: (SingingCharacter value) {
