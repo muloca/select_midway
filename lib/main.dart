@@ -26,9 +26,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Map> data = List.generate(
-      1, (index) => {'id': index, 'name': 'Item $index', 'isSelected': false});
-
   final payment = Payments();
 
   int selected = 0;
@@ -41,13 +38,12 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
         child: Container(
-          width: 800,
+          width: 1000,
           height: 300,
           child: GridView.builder(
-              padding: EdgeInsets.symmetric(vertical: 4),
               scrollDirection: Axis.horizontal,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1, mainAxisSpacing: 2, childAspectRatio: 0.5),
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
               itemCount: payment.pay.length,
               itemBuilder: (_, i) {
                 return GestureDetector(
@@ -57,9 +53,14 @@ class _HomePageState extends State<HomePage> {
                         print(selected);
                       });
                     },
-                    child: SelectCardComponent(
-                      pay: payment.pay[i],
-                      isSelect: (selected == i),
+                    child: Column(
+                      children: [
+                        Text(payment.pay.elementAt(i)),
+                        SelectCardComponent(
+                          pay: payment.pay[i],
+                          isSelect: (selected == i),
+                        ),
+                      ],
                     ));
               }),
         ),
