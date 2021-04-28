@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Select Item',
+      title: 'Select Item ',
       home: HomePage(),
     );
   }
@@ -30,39 +30,42 @@ class _HomePageState extends State<HomePage> {
 
   int selected = 0;
 
+  String title = 'Select Item & Group Items';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Item'),
+        title: Text(title),
       ),
       body: Center(
         child: Container(
           width: 1000,
           height: 300,
           child: GridView.builder(
-              scrollDirection: Axis.horizontal,
-              gridDelegate:
-                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
-              itemCount: payment.pay.length,
-              itemBuilder: (_, i) {
-                return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selected = i;
-                        print(selected);
-                      });
-                    },
-                    child: Column(
-                      children: [
-                        Text(payment.pay.elementAt(i)),
-                        SelectCardComponent(
-                          pay: payment.pay[i],
-                          isSelect: (selected == i),
-                        ),
-                      ],
-                    ));
-              }),
+            scrollDirection: Axis.horizontal,
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 1),
+            itemCount: payment.pay.length,
+            itemBuilder: (_, i) {
+              return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selected = i;
+                      print(selected);
+                    });
+                  },
+                  child: Column(
+                    children: [
+                      Text(payment.pay.elementAt(i)),
+                      SelectCardComponent(
+                        pay: payment.pay[i],
+                        isSelect: (selected == i),
+                      ),
+                    ],
+                  ));
+            },
+          ),
         ),
       ),
     );
