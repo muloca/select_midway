@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:selection/component/select_radio.dart';
-import 'package:selection/component/selection_componet.dart';
-import 'component/selection_card.dart';
+import 'component/select_card_component.dart';
 
 class Payments {
   List pay = ['Dinheiro', 'Débito', 'Crédito'];
@@ -33,51 +31,39 @@ class _HomePageState extends State<HomePage> {
 
   final payment = Payments();
 
+  int selected = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Select Item'),
-        ),
-        body: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SelectCard(),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SelectionComponent(),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: RadioSelect(),
-              ),
-              GridView(
-                padding: EdgeInsets.symmetric(vertical: 4),
-                scrollDirection: Axis.horizontal,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    mainAxisSpacing: 8,
-                    childAspectRatio: 0.5),
-                children: payment.pay.map((p) {
-                  return GestureDetector(
+      appBar: AppBar(
+        title: Text('Select Item'),
+      ),
+      body: Center(
+        child: Container(
+          width: 800,
+          height: 300,
+          child: GridView.builder(
+              padding: EdgeInsets.symmetric(vertical: 4),
+              scrollDirection: Axis.horizontal,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 1, mainAxisSpacing: 2, childAspectRatio: 0.5),
+              itemCount: payment.pay.length,
+              itemBuilder: (_, i) {
+                return GestureDetector(
                     onTap: () {
                       setState(() {
-                        pay = p;
+                        selected = i;
+                        print(selected);
                       });
                     },
-                    child: Container(
-                      child: p,
-                    ),
-                  );
-                }),
-              ),
-            ],
-          ),
-        ));
+                    child: SelectCardComponent(
+                      pay: payment.pay[i],
+                      isSelect: (selected == i),
+                    ));
+              }),
+        ),
+      ),
+    );
   }
 }
